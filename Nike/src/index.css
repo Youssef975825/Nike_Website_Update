@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* (Floating)*/
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+.floating-shoe {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* 3D Perspective */
+.product-card-3d {
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.product-card-3d:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 30px -10px rgba(219, 39, 119, 0.3);
+  /* Virtual Shadow With Neon Pink*/
+}
+
+.review-carousel {
+  anchor-name: --review-carousel;
+  scroll-marker-group: after;
+  scrollbar-width: none;
+  position: relative;
+}
+
+.review-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.review-slide::scroll-marker {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #9ca3af;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.review-slide::scroll-marker:target-current {
+  background: #db2777;
+  transform: scale(1.25);
+}
+
+.review-carousel::scroll-marker-group {
+  position: absolute;
+  position-anchor: --review-carousel;
+  top: calc(anchor(bottom) + 8px);
+  left: anchor(center);
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
